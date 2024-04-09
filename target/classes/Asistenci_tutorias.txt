@@ -1,0 +1,28 @@
+2130217	César Ricardo Berrones Zapata	12342	true
+2230343	Angel Ivan Cabrera Rojas	12342	true
+2230154	Luis Mauricio Camacho Torres	12342	true
+2230162	Deisy Dalila De La Fuente Alvarado	12342	true
+2230181	Cristobal Elias Escandon Escobar	12342	true
+2230039	Edison Giancarlo Garcia Ca...	12342	true
+2130385	Jorge Luis Geronimo Osorio	12342	true
+2230194	Carmen Rubi Gonzales Reyes	12342	true
+2030306	Luis Gerardo Gonzalez Vald...	12342	true
+2230082	Israel Antonio Guijarro Lopez	12342	true
+2230142	Leidy Mitsary Hernandez Ortiz	12342	true
+2230309	Miguel Angel Hernandez Ramirez	12342	true
+2130191	Vanessa Nataly Manzano	10.0	12342	true
+2030429	Juan Eduardo Martinez Zuñiga	12342	true
+2230232	Elva Mayte Melendez Hernandez	12342	true
+2130293	Ximena Abigail Moreno Ledezma	12342	true
+2230224	Jesus Angel Nuñez Marquez	12342	true
+2230412	Osiel Alejando Olivo De Leon	12342	true
+2230070	Naydelin Carolina Palmmero Medrano	12342	true
+2230159	Eduardo Ramirez Carrillo	12342	true
+2230347	Axel Mauricio Rodriguez Contreras	12342	true
+2230212	Maria Guadalupe Saavedra Gonzales	12342	true
+2230136	MIGUEL ANGEL SANDOVAL SILVA	12342	true
+2230043	Juan Ricardo Soriano Roel	12342	true
+2030399	Aris Uriel Torres Desilos	12342	true
+2230422	Jose Daniel Zamudio Jimenez	12342	true
+2230282	Cinthia Vanessa Torres Grimaldo 12342	true
+

@@ -143,14 +143,12 @@ public class Botclass extends TelegramLongPollingBot {
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
-        } //ya
+        }
         else if (message.equals("/psicologia")) {
-            sendMessage(generateSendMessage(chatId, "se genero una cita psicologia: "));
+            sendMessage(generateSendMessage(chatId, "se genero una cita con la psicologia ve a esta hora: 11:30am"));
         }
         else if (message.equals("/tutorias")) {
-            sendMessage(generateSendMessage(chatId, "Entraste a asistencia de tutorias: "));
-        } else {
-            sendMessage(generateSendMessage(chatId, "opcion no valida"));
+            sendMessage(generateSendMessage(chatId, "Se confirmo tu tutoria"));
         }
     }
 
