@@ -44,23 +44,34 @@ public class Botclass extends TelegramLongPollingBot {
             sendMessage(generateSendMessage(chatId, "/tutorias "));
 
         } else if (message.equals("/historial")) {
+            conversacion.put(chatId, message);
+            sendMessage(generateSendMessage(chatId, "Ingresa la matricula: "));
+        } else if (conversacion.containsKey(chatId) && conversacion.get(chatId).equals("/historial")) {
+            String matricula = message;
             Pdfs pdfs = new Pdfs();
             try {
-                File pdfFile = pdfs.historial("2231232");
-                String asunto= "historial_academico";
-                pdfs.sendPdfDocument(chatId, pdfFile,asunto);
+                File pdfFile = pdfs.historial(matricula);
+                String asunto = "historial_academico";
+                pdfs.sendPdfDocument(chatId, pdfFile, asunto);
+                conversacion.remove(chatId);
             } catch (FileNotFoundException | DocumentException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
+
         else if (message.equals("/constancia")) {
+            conversacion.put(chatId, message);
+            sendMessage(generateSendMessage(chatId, "Ingresa la matricula: "));
+        } else if (conversacion.containsKey(chatId) && conversacion.get(chatId).equals("/constancia")) {
+            String matricula = message;
             Pdfs pdfs = new Pdfs();
             try {
-                File pdfFile = pdfs.constancia("2231232");
-                String asunto= "Constancia";
+                File pdfFile = pdfs.constancia(matricula);
+                String asunto = "Constancia_estudios";
                 pdfs.sendPdfDocument(chatId, pdfFile, asunto);
+                conversacion.remove(chatId);
             } catch (FileNotFoundException | DocumentException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -69,11 +80,16 @@ public class Botclass extends TelegramLongPollingBot {
 
         }
         else if (message.equals("/pago")) {
+            conversacion.put(chatId, message);
+            sendMessage(generateSendMessage(chatId, "Ingresa la matricula: "));
+        } else if (conversacion.containsKey(chatId) && conversacion.get(chatId).equals("/pago")) {
+            String matricula = message;
             Pdfs pdfs = new Pdfs();
             try {
-                File pdfFile = pdfs.baucher_credencial("2231252");
-                String asunto= "baucher_credencial";
-                pdfs.sendPdfDocument(chatId, pdfFile,asunto);
+                File pdfFile = pdfs.baucher_credencial(matricula);
+                String asunto = "pago_credencial";
+                pdfs.sendPdfDocument(chatId, pdfFile, asunto);
+                conversacion.remove(chatId);
             } catch (FileNotFoundException | DocumentException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -81,11 +97,16 @@ public class Botclass extends TelegramLongPollingBot {
             }
         }
         else if (message.equals("/alta")) {
+            conversacion.put(chatId, message);
+            sendMessage(generateSendMessage(chatId, "Ingresa la matricula: "));
+        } else if (conversacion.containsKey(chatId) && conversacion.get(chatId).equals("/alta")) {
+            String matricula = message;
             Pdfs pdfs = new Pdfs();
             try {
-                File pdfFile = pdfs.alta_SS("2231252");
-                String asunto= "Alta_SS";
-                pdfs.sendPdfDocument(chatId, pdfFile,asunto);
+                File pdfFile = pdfs.alta_SS(matricula);
+                String asunto = "Alta_SS";
+                pdfs.sendPdfDocument(chatId, pdfFile, asunto);
+                conversacion.remove(chatId);
             } catch (FileNotFoundException | DocumentException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -94,11 +115,16 @@ public class Botclass extends TelegramLongPollingBot {
 
         }
         else if (message.equals("/cardex")) {
+            conversacion.put(chatId, message);
+            sendMessage(generateSendMessage(chatId, "Ingresa la matricula: "));
+        } else if (conversacion.containsKey(chatId) && conversacion.get(chatId).equals("/cardex")) {
+            String matricula = message;
             Pdfs pdfs = new Pdfs();
             try {
-                File pdfFile = pdfs.cardex("2231252");
-                String asunto= "Cardex";
-                pdfs.sendPdfDocument(chatId, pdfFile,asunto);
+                File pdfFile = pdfs.cardex(matricula);
+                String asunto = "Cadex-historial";
+                pdfs.sendPdfDocument(chatId, pdfFile, asunto);
+                conversacion.remove(chatId);
             } catch (FileNotFoundException | DocumentException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -128,15 +154,20 @@ public class Botclass extends TelegramLongPollingBot {
         }
     }
 
-    private SendMessage generateSendMessage(Long chatId, String characterCount) {
+    public SendMessage generateSendMessage(Long chatId, String characterCount) {
         return new SendMessage(chatId.toString(), characterCount);
     }
 
-    private void sendMessage(SendMessage sendMessage) {
+    void sendMessage(SendMessage sendMessage) {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+    }
+    public void enviar_mensaje_error(){
+        Update update = null;
+        Long chatId = update.getMessage().getChatId();
+        sendMessage(generateSendMessage(chatId, "no valido "));
     }
 }
