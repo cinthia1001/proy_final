@@ -84,6 +84,8 @@ public class Pdfs {
             Alumnos alumnos = new Alumnos();
             alumnos.setId(Integer.parseInt(matricula));
             alumnos.Buscar_usuario_id(alumnos);
+            texto= new Chunk("Calificaciones: "+ alumnos.getPromedio() + "\n",f);
+            document.add(texto);
 
             Phrase p = new Phrase("Historial academico de " + alumnos.getNombre());
             document.add(p);

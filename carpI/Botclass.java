@@ -135,7 +135,7 @@ public class Botclass extends TelegramLongPollingBot {
             SendPhoto sendPhoto = new SendPhoto();
             sendPhoto.setChatId(chatId.toString());
             InputFile photo = new InputFile();
-            photo.setMedia(new File("Imagenes/Becas.png")); // Ruta al archivo de la imagen
+            photo.setMedia(new File("Imagenes/Becas.png"));
             sendPhoto.setPhoto(photo);
 
             try {
