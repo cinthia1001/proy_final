@@ -2,6 +2,7 @@ package carpI;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.codec.PngWriter;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -29,35 +30,41 @@ public class Pdfs {
 
     public File constancia(String matricula) throws FileNotFoundException, DocumentException {
         try {
-            Paragraph encabezado = new Paragraph();
-            Font f=new Font();
-            f.setFamily(Font.FontFamily.TIMES_ROMAN.name());
-            f.setStyle(Font.BOLD);
-            f.setSize(9);
-            Chunk texto;
-            texto=new Chunk("\n\nAsunto: Constancia de estudios.\n",f);
-            encabezado.add(texto);
             Alumnos alumnos = new Alumnos();
             alumnos.setId(Integer.parseInt(matricula));
-            alumnos.Buscar_usuario_id(alumnos);
 
+            if (!alumnos.Buscar_usuario_id(alumnos)) {
+                throw new RuntimeException("No se encontró al alumno con la matrícula: " + matricula);
+            }
 
             String path = "constancia_" + matricula + ".pdf";
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(path));
             document.open();
-            Phrase p = new Phrase("Constancia de estudios de " + alumnos.getNombre());
-            document.add(p);
+
+            Font fontEncabezado = new Font(Font.FontFamily.TIMES_ROMAN, 15, Font.BOLD);
+            Paragraph encabezado = new Paragraph("Constancia de Estudios", fontEncabezado);
+            encabezado.setAlignment(Element.ALIGN_CENTER);
+            document.add(encabezado);
+
+            // Agregar información sobre el alumno
+            Font fontCuerpo = new Font(Font.FontFamily.TIMES_ROMAN, 10);
+            Paragraph cuerpo = new Paragraph();
+            cuerpo.add("\n\nPor medio de este documento se hace constar que el alumno:\n");
+            cuerpo.add("Nombre: " + alumnos.getNombre() + "\n");
+            cuerpo.add("Matrícula: " + matricula + "\n");
+            cuerpo.add("Está cursando actualmente el 5to cuatrimestre en la Universidad Politécnica de Victoria.\n");
+            document.add(cuerpo);
 
             document.close();
             return new File(path);
 
-        } catch (FileNotFoundException | DocumentException exception) {
-            throw exception;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+
     public File historial(String matricula) throws FileNotFoundException, DocumentException {
         try {
             String path = "Historial" + matricula + ".pdf";
@@ -187,12 +194,11 @@ public class Pdfs {
             document.close();
             return new File(path);
 
-        } catch (FileNotFoundException | DocumentException exception) {
-            throw exception;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
 
 
 
