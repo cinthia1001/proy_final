@@ -1,5 +1,9 @@
 package carpI;
 
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
+
 import com.itextpdf.text.DocumentException;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -145,10 +149,14 @@ public class Botclass extends TelegramLongPollingBot {
             }
         }
         else if (message.equals("/psicologia")) {
-            sendMessage(generateSendMessage(chatId, "se genero una cita con la psicologia ve a esta hora: 11:30am"));
+            sendMessage(generateSendMessage(chatId, "se genero una cita con la psicologia ve de 11am a 15:30pm "));
         }
         else if (message.equals("/tutorias")) {
-            sendMessage(generateSendMessage(chatId, "Se confirmo tu tutoria"));
+            conversacion.put(chatId, message);
+            sendMessage(generateSendMessage(chatId, "Ingresa la matricula: "));
+        } else if (conversacion.containsKey(chatId) && conversacion.get(chatId).equals("/tutorias")) {
+            sendMessage(generateSendMessage(chatId, "se confimo tu tutoria"));
+
         }
     }
 
@@ -168,4 +176,5 @@ public class Botclass extends TelegramLongPollingBot {
         Long chatId = update.getMessage().getChatId();
         sendMessage(generateSendMessage(chatId, "no valido "));
     }
+
 }

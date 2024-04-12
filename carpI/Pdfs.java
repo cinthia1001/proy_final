@@ -46,14 +46,14 @@ public class Pdfs {
             Paragraph encabezado = new Paragraph("Constancia de Estudios", fontEncabezado);
             encabezado.setAlignment(Element.ALIGN_CENTER);
             document.add(encabezado);
-
-            // Agregar información sobre el alumno
             Font fontCuerpo = new Font(Font.FontFamily.TIMES_ROMAN, 10);
             Paragraph cuerpo = new Paragraph();
             cuerpo.add("\n\nPor medio de este documento se hace constar que el alumno:\n");
+            cuerpo.add("A quien corresponda: \n");
             cuerpo.add("Nombre: " + alumnos.getNombre() + "\n");
             cuerpo.add("Matrícula: " + matricula + "\n");
-            cuerpo.add("Está cursando actualmente el 5to cuatrimestre en la Universidad Politécnica de Victoria.\n");
+            cuerpo.add("Cursa actualmente el QUINTO cuatrimestre del programa academico de Ingenieria En Tecnologias de la Informacion.\n");
+            cuerpo.add("en el periodo correspondido del 8 de enero al 19 de abril del ciclo escolar 2023-2024,.\n");
             document.add(cuerpo);
 
             document.close();
@@ -119,7 +119,6 @@ public class Pdfs {
 
             Phrase p = new Phrase("Pago de credencial de " + alumnos.getNombre());
             texto = new Chunk("\n\nAsunto: Pago de credencial.\n Numero de referencia: 1256285548", f);
-            //aqui puedo usar P para crear todo el formato de pgo
             encabezado.add(texto);
             document.add(encabezado);
             document.add(p);
